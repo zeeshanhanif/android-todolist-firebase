@@ -1,5 +1,6 @@
 package firebasetodolist.todolist.firebase.com;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -8,6 +9,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class LoginActivity extends ActionBarActivity {
@@ -51,6 +55,7 @@ public class LoginActivity extends ActionBarActivity {
      */
     public static class PlaceholderFragment extends Fragment {
 
+        private EditText emailId;
         public PlaceholderFragment() {
         }
 
@@ -58,6 +63,16 @@ public class LoginActivity extends ActionBarActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_login, container, false);
+            Button signin = (Button) rootView.findViewById(R.id.signin);
+            emailId = (EditText) rootView.findViewById(R.id.editTextEmail);
+            signin.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getActivity(), emailId.getText(), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getActivity(),ToDoListActivity.class);
+                    startActivity(intent);
+                }
+            });
             return rootView;
         }
     }

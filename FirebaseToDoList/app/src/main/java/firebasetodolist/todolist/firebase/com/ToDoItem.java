@@ -9,11 +9,18 @@ public class ToDoItem {
 
     private String description;
     private Date timestamp;
+    private boolean completed;
 
     public ToDoItem(){}
 
     public ToDoItem(String description){
         this.description = description;
+        this.timestamp = new Date();
+    }
+
+    public ToDoItem(String description,boolean completed){
+        this.description = description;
+        this.completed = completed;
         this.timestamp = new Date();
     }
 
@@ -37,4 +44,11 @@ public class ToDoItem {
         return description;
     }
 
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
 }

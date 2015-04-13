@@ -43,8 +43,9 @@ public class SynchronizedToDoItemArray {
 
     public void addTodo(){
         //todoFirebaseRef.set
-        todoFirebaseRef.setValue(new ToDoItem("Hello with todo object"));
+        //todoFirebaseRef.setValue(new ToDoItem("Hello with todo object"));
         //todoFirebaseRef.setValue("simple todo sdfsd");
+        todoFirebaseRef.push().setValue(new ToDoItem("Hello with todo object"));
     }
 
     public void setupReadingEvent(){

@@ -25,19 +25,6 @@ public class SynchronizedToDoItemArray {
         this.mToDoItems = new ArrayList<ToDoItem>();
         todoFirebaseRef = FirebaseHandler.getInstance().getMyFirebaseRef().child("todos");
         setupReadingEvent();
-
-        todoFirebaseRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                System.out.println("><<><><><<> = "+dataSnapshot.getValue().toString());
-                Log.d(TAG, dataSnapshot.getValue().toString());
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-
-            }
-        });
         addTodo();
         fillDummyData();
     }
@@ -55,13 +42,24 @@ public class SynchronizedToDoItemArray {
     }
 
     public void addTodo(){
-        //todoFirebaseRef.setValue(new ToDoItem("Hello with todo object"));
-        todoFirebaseRef.setValue("simple todo sdfsd");
+        //todoFirebaseRef.set
+        todoFirebaseRef.setValue(new ToDoItem("Hello with todo object"));
+        //todoFirebaseRef.setValue("simple todo sdfsd");
     }
 
     public void setupReadingEvent(){
+        todoFirebaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                System.out.println("><<><><><<> = "+dataSnapshot.getValue().toString());
+                Log.d(TAG, dataSnapshot.getValue().toString());
+            }
 
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
 
+            }
+        });
     }
 
 }

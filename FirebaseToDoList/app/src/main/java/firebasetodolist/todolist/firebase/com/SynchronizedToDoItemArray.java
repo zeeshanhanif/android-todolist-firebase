@@ -2,6 +2,7 @@ package firebasetodolist.todolist.firebase.com;
 
 import android.util.Log;
 
+import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -45,7 +46,7 @@ public class SynchronizedToDoItemArray {
         //todoFirebaseRef.set
         //todoFirebaseRef.setValue(new ToDoItem("Hello with todo object"));
         //todoFirebaseRef.setValue("simple todo sdfsd");
-        todoFirebaseRef.push().setValue(new ToDoItem("Hello with todo object"));
+        todoFirebaseRef.push().setValue(new ToDoItem("Hello asdf with todo object"));
     }
 
     public void setupReadingEvent(){
@@ -61,6 +62,35 @@ public class SynchronizedToDoItemArray {
 
             }
         });
+
+        todoFirebaseRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                System.out.println("><<><><><<> child added == "+dataSnapshot.getValue().toString());
+                Log.d(TAG, dataSnapshot.getValue().toString());
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+
     }
 
 }

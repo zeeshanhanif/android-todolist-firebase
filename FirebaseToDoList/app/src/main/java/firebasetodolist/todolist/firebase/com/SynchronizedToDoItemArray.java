@@ -40,6 +40,10 @@ public class SynchronizedToDoItemArray {
         mToDoItems.add(new ToDoItem("Hello 3"));
         mToDoItems.add(new ToDoItem("Hello 4"));
         mToDoItems.add(new ToDoItem("Hello 5"));
+        mToDoItems.add(new ToDoItem("Hello 6"));
+        mToDoItems.add(new ToDoItem("Hello 7"));
+        mToDoItems.add(new ToDoItem("Hello 8"));
+        mToDoItems.add(new ToDoItem("Hello 9"));
     }
 
     public void addTodo(){

@@ -5,5 +5,9 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_to_do_list">My ToDo List</string>
+    <string name="addTodoText">My ToDo List</string>
+    <string name="addTodo">Add</string>
+    <string name="cancleTodoAdd">Cancel</string>
+
 
 </resources>

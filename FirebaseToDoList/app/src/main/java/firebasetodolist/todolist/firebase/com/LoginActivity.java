@@ -1,5 +1,7 @@
 package firebasetodolist.todolist.firebase.com;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
@@ -14,6 +16,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.firebase.client.Firebase;
+
+import java.util.GregorianCalendar;
 
 import firebasetodolist.todolist.firebase.com.firebase.FirebaseHandler;
 
@@ -67,17 +71,20 @@ public class LoginActivity extends ActionBarActivity {
         }
 
         @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+        public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_login, container, false);
-            Button signin = (Button) rootView.findViewById(R.id.signin);
+            final Button signin = (Button) rootView.findViewById(R.id.signin);
             emailId = (EditText) rootView.findViewById(R.id.editTextEmail);
             signin.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(getActivity(), emailId.getText(), Toast.LENGTH_SHORT).show();
+                    //createDialog(inflater);
+
                     Intent intent = new Intent(getActivity(),ToDoListActivity.class);
                     startActivity(intent);
+
                 }
             });
             return rootView;

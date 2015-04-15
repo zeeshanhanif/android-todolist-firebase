@@ -26,8 +26,8 @@ public class SynchronizedToDoItemArray {
         this.mToDoItems = new ArrayList<ToDoItem>();
         todoFirebaseRef = FirebaseHandler.getInstance().getMyFirebaseRef().child("todos");
         setupReadingEvent();
-        addTodo(new ToDoItem("New Check if todo item in argument"));
-        fillDummyData();
+        //addTodo(new ToDoItem("New Check if todo item in argument"));
+        //fillDummyData();
     }
 
     public ArrayList<ToDoItem> getToDoItems(){
@@ -60,7 +60,7 @@ public class SynchronizedToDoItemArray {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 System.out.println("><<><><><<> = "+dataSnapshot.getValue().toString());
-                Log.d(TAG, dataSnapshot.getValue().toString());
+                Log.d(TAG, "value Event = "+dataSnapshot.getValue().toString());
             }
 
             @Override
@@ -73,7 +73,10 @@ public class SynchronizedToDoItemArray {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 System.out.println("><<><><><<> child added == "+dataSnapshot.getValue().toString());
-                Log.d(TAG, dataSnapshot.getValue().toString());
+                ToDoItem item = dataSnapshot.getValue(ToDoItem.class);
+                mToDoItems.add(item);
+                Log.d(TAG, "child added ==  "+dataSnapshot.getValue().toString());
+
             }
 
             @Override

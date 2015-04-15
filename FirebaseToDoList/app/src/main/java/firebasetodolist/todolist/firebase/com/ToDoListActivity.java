@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 
@@ -75,13 +76,14 @@ public class ToDoListActivity extends ActionBarActivity implements FragmentCommu
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 
         // 2. Chain together various setter methods to set the dialog characteristics
-        builder.setMessage("Hello message")
-                .setTitle("Hello title");
-        View dialogView = inflater.inflate(R.layout.dialog_add_todo, null, false);
+        builder.setTitle("Add Your Next ToDo");
+        final View dialogView = inflater.inflate(R.layout.dialog_add_todo, null, false);
         builder.setView(dialogView);
         builder.setPositiveButton(R.string.addTodo, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                EditText todoEditText = (EditText)dialogView.findViewById(R.id.todoEditText);
+                mSynchronizedToDoItemArray.addTodo(new ToDoItem(todoEditText.getText().toString()));
                 Toast.makeText(activity, "Todo Add", Toast.LENGTH_SHORT).show();
             }
         });
@@ -99,7 +101,6 @@ public class ToDoListActivity extends ActionBarActivity implements FragmentCommu
 
 
     // Fragment Communication Interface
-
     public boolean addToDo(ToDoItem toDoItem){
         return mSynchronizedToDoItemArray.addTodo(toDoItem);
     }

@@ -10,6 +10,7 @@ public class ToDoItem {
     private String description;
     private Date timestamp;
     private boolean completed;
+    private String key;
 
     public ToDoItem(){}
 
@@ -50,5 +51,13 @@ public class ToDoItem {
 
     public void setCompleted(boolean completed) {
         this.completed = completed;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 }

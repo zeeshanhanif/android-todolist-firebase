@@ -13,15 +13,16 @@ import android.widget.Button;
 import android.widget.Toast;
 
 
-public class ToDoListActivity extends ActionBarActivity {
+public class ToDoListActivity extends ActionBarActivity implements FragmentCommunicationInterface {
 
     Button addTodoBtn;
+    SynchronizedToDoItemArray mSynchronizedToDoItemArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_to_do_list);
-
+        mSynchronizedToDoItemArray = new SynchronizedToDoItemArray();
         loadViewElements();
         addEventListeners();
 
@@ -94,6 +95,17 @@ public class ToDoListActivity extends ActionBarActivity {
         // 3. Get the AlertDialog from create()
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+
+    // Fragment Communication Interface
+
+    public boolean addToDo(ToDoItem toDoItem){
+        return mSynchronizedToDoItemArray.addTodo(toDoItem);
+    }
+
+    public SynchronizedToDoItemArray getToDoItemArray(){
+        return mSynchronizedToDoItemArray;
     }
 
 }

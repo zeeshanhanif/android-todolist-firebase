@@ -26,7 +26,7 @@ public class SynchronizedToDoItemArray {
         this.mToDoItems = new ArrayList<ToDoItem>();
         todoFirebaseRef = FirebaseHandler.getInstance().getMyFirebaseRef().child("todos");
         setupReadingEvent();
-        addTodo();
+        addTodo(new ToDoItem("New Check if todo item in argument"));
         fillDummyData();
     }
 
@@ -46,11 +46,13 @@ public class SynchronizedToDoItemArray {
         mToDoItems.add(new ToDoItem("Hello 9"));
     }
 
-    public void addTodo(){
+    public boolean addTodo(ToDoItem toDoItem){
         //todoFirebaseRef.set
         //todoFirebaseRef.setValue(new ToDoItem("Hello with todo object"));
         //todoFirebaseRef.setValue("simple todo sdfsd");
-        todoFirebaseRef.push().setValue(new ToDoItem("Hello asdf with todo object"));
+        //todoFirebaseRef.push().setValue(new ToDoItem("Hello asdf with todo object"));
+        todoFirebaseRef.push().setValue(toDoItem);
+        return true;
     }
 
     public void setupReadingEvent(){

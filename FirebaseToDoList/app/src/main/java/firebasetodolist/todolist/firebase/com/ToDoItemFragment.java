@@ -24,6 +24,8 @@ public class ToDoItemFragment extends ListFragment {
 
 
     public static final String TAG = "ToDoItemFragment";
+    private FragmentCommunicationInterface mFragmentCommunicationInterface;
+    private SynchronizedToDoItemArray mSynchronizedToDoItemArray;
 
     public ToDoItemFragment() {
     }
@@ -31,13 +33,14 @@ public class ToDoItemFragment extends ListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SynchronizedToDoItemArray toDoItemArray = new SynchronizedToDoItemArray();
+        mFragmentCommunicationInterface = (ToDoListActivity)getActivity();
+        mSynchronizedToDoItemArray = mFragmentCommunicationInterface.getToDoItemArray();
 
         // TODO: Change Adapter to display your content
         //setListAdapter(new ArrayAdapter<ToDoItem>(getActivity(),
         //        android.R.layout.simple_list_item_1, android.R.id.text1, toDoItemArray.getToDoItems()));
 
-        ToDoAdapter adapter = new ToDoAdapter(toDoItemArray.getToDoItems());
+        ToDoAdapter adapter = new ToDoAdapter(mSynchronizedToDoItemArray.getToDoItems());
         setListAdapter(adapter);
     }
 

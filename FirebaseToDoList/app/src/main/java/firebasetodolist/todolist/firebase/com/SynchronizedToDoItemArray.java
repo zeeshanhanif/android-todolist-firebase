@@ -30,8 +30,8 @@ public class SynchronizedToDoItemArray {
         //fillDummyData();
     }
 
-    public ArrayList<ToDoItem> getToDoItems(){
-        return mToDoItems;
+        public ArrayList<ToDoItem> getToDoItems(){
+            return mToDoItems;
     }
 
     public void fillDummyData(){

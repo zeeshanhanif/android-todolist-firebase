@@ -102,11 +102,19 @@ public class ToDoListActivity extends ActionBarActivity implements FragmentCommu
 
     // Fragment Communication Interface
     public boolean addToDo(ToDoItem toDoItem){
-        return mSynchronizedToDoItemArray.addTodo(toDoItem);
+        mSynchronizedToDoItemArray.addTodo(toDoItem);
+        //updateToDoFragmentUI();
+        return true;
     }
 
     public SynchronizedToDoItemArray getToDoItemArray(){
         return mSynchronizedToDoItemArray;
     }
 
+    /*
+    public void updateToDoFragmentUI (){
+        ToDoItemFragment fragment = (ToDoItemFragment) getSupportFragmentManager().findFragmentById(R.id.container);
+        fragment.uploadListAdapter();
+    }
+    */
 }

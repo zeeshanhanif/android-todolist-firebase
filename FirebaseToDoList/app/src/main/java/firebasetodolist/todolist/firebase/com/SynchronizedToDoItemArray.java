@@ -20,9 +20,22 @@ public class SynchronizedToDoItemArray {
     private ArrayList<ToDoItem> mToDoItems;
     private Firebase todoFirebaseRef;
     private static final String TAG = "SynchronizedToDoItemArray";
+    private ToDoItemFragment toDoItemFragment;
 
+
+    public SynchronizedToDoItemArray(ToDoItemFragment toDoItemFragment){
+        System.out.println("helloo arayyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
+        this.mToDoItems = new ArrayList<ToDoItem>();
+        todoFirebaseRef = FirebaseHandler.getInstance().getMyFirebaseRef().child("todos");
+
+        this.toDoItemFragment = toDoItemFragment;
+        setupReadingEvent();
+        //addTodo(new ToDoItem("New Check if todo item in argument"));
+        //fillDummyData();
+    }
 
     public SynchronizedToDoItemArray(){
+        System.out.println("helloo arayyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
         this.mToDoItems = new ArrayList<ToDoItem>();
         todoFirebaseRef = FirebaseHandler.getInstance().getMyFirebaseRef().child("todos");
         setupReadingEvent();
@@ -30,7 +43,7 @@ public class SynchronizedToDoItemArray {
         //fillDummyData();
     }
 
-        public ArrayList<ToDoItem> getToDoItems(){
+    public ArrayList<ToDoItem> getToDoItems(){
             return mToDoItems;
     }
 
@@ -55,7 +68,14 @@ public class SynchronizedToDoItemArray {
         return true;
     }
 
+    public boolean addTodo(ToDoItem toDoItem,ToDoItemFragment toDoItemFragment){
+        todoFirebaseRef.push().setValue(toDoItem);
+        toDoItemFragment.uploadListAdapter();
+        return true;
+    }
+
     public void setupReadingEvent(){
+        System.out.println("setupReadingEvent helloo arayyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
         todoFirebaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -75,8 +95,10 @@ public class SynchronizedToDoItemArray {
                 System.out.println("><<><><><<> child added == "+dataSnapshot.getValue().toString());
                 ToDoItem item = dataSnapshot.getValue(ToDoItem.class);
                 mToDoItems.add(item);
+                if(toDoItemFragment !=null) {
+                    toDoItemFragment.notifyChanges();
+                }
                 Log.d(TAG, "child added ==  "+dataSnapshot.getValue().toString());
-
             }
 
             @Override
@@ -100,6 +122,10 @@ public class SynchronizedToDoItemArray {
             }
         });
 
+    }
+
+    public void setToDoItemFragment(ToDoItemFragment toDoItemFragment){
+        this.toDoItemFragment = toDoItemFragment;
     }
 
 }

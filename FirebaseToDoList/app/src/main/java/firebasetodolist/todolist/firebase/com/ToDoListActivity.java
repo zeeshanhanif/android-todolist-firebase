@@ -27,10 +27,12 @@ public class ToDoListActivity extends ActionBarActivity implements FragmentCommu
         loadViewElements();
         addEventListeners();
 
+        ToDoItemFragment toDoItemFragment;
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new ToDoItemFragment())
+                    .add(R.id.container, toDoItemFragment = new ToDoItemFragment())
                     .commit();
+            mSynchronizedToDoItemArray.setToDoItemFragment(toDoItemFragment);
         }
     }
 
@@ -99,7 +101,6 @@ public class ToDoListActivity extends ActionBarActivity implements FragmentCommu
         dialog.show();
     }
 
-
     // Fragment Communication Interface
     public boolean addToDo(ToDoItem toDoItem){
         mSynchronizedToDoItemArray.addTodo(toDoItem);
@@ -111,10 +112,4 @@ public class ToDoListActivity extends ActionBarActivity implements FragmentCommu
         return mSynchronizedToDoItemArray;
     }
 
-    /*
-    public void updateToDoFragmentUI (){
-        ToDoItemFragment fragment = (ToDoItemFragment) getSupportFragmentManager().findFragmentById(R.id.container);
-        fragment.uploadListAdapter();
-    }
-    */
 }

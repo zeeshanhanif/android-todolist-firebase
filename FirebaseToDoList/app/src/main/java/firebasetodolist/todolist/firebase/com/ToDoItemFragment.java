@@ -20,7 +20,7 @@ import java.util.ArrayList;
  * <p/>
 
  */
-public class ToDoItemFragment extends ListFragment {
+public class ToDoItemFragment extends ListFragment implements NotifierListener {
 
 
     public static final String TAG = "ToDoItemFragment";
@@ -83,9 +83,11 @@ public class ToDoItemFragment extends ListFragment {
         }
     }
 
+    public void notifyChanges(){
+        ((ArrayAdapter<ToDoItem>)getListAdapter()).notifyDataSetChanged();
+    }
     public void uploadListAdapter(){
         ToDoAdapter adapter = new ToDoAdapter(mSynchronizedToDoItemArray.getToDoItems());
         setListAdapter(adapter);
-
     }
 }

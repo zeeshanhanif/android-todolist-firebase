@@ -6,6 +6,7 @@ package firebasetodolist.todolist.firebase.com;
 public interface FragmentCommunicationInterface {
 
     boolean addToDo(ToDoItem toDoItem);
+    //SynchronizedArray getToDoItemArray();
     SynchronizedToDoItemArray getToDoItemArray();
     //void updateToDoFragmentUI();
 }

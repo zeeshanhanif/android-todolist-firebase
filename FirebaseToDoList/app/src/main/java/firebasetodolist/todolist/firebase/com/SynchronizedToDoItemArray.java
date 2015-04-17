@@ -26,7 +26,7 @@ public class SynchronizedToDoItemArray {
     public SynchronizedToDoItemArray(ToDoItemFragment toDoItemFragment){
         System.out.println("helloo arayyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
         this.mToDoItems = new ArrayList<ToDoItem>();
-        todoFirebaseRef = FirebaseHandler.getInstance().getMyFirebaseRef().child("todos");
+        todoFirebaseRef = FirebaseHandler.getInstance().getRootFirebaseRef().child("todos");
 
         this.toDoItemFragment = toDoItemFragment;
         setupReadingEvent();
@@ -37,7 +37,7 @@ public class SynchronizedToDoItemArray {
     public SynchronizedToDoItemArray(){
         System.out.println("helloo arayyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
         this.mToDoItems = new ArrayList<ToDoItem>();
-        todoFirebaseRef = FirebaseHandler.getInstance().getMyFirebaseRef().child("todos");
+        todoFirebaseRef = FirebaseHandler.getInstance().getRootFirebaseRef().child("todos");
         setupReadingEvent();
         //addTodo(new ToDoItem("New Check if todo item in argument"));
         //fillDummyData();
@@ -70,7 +70,7 @@ public class SynchronizedToDoItemArray {
 
     public boolean addTodo(ToDoItem toDoItem,ToDoItemFragment toDoItemFragment){
         todoFirebaseRef.push().setValue(toDoItem);
-        toDoItemFragment.uploadListAdapter();
+        toDoItemFragment.updateListAdapter();
         return true;
     }
 

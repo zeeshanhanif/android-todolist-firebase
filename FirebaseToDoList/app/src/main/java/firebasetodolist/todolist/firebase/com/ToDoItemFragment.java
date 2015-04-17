@@ -1,6 +1,5 @@
 package firebasetodolist.todolist.firebase.com;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
@@ -37,7 +36,7 @@ public class ToDoItemFragment extends ListFragment implements NotifierListener {
         mFragmentCommunicationInterface = (ToDoListActivity)getActivity();
 
         mSynchronizedToDoItemArray = mFragmentCommunicationInterface.getToDoItemArray();
-        uploadListAdapter();
+        updateListAdapter();
         // TODO: Change Adapter to display your content
         //setListAdapter(new ArrayAdapter<ToDoItem>(getActivity(),
         //        android.R.layout.simple_list_item_1, android.R.id.text1, toDoItemArray.getToDoItems()));
@@ -86,7 +85,7 @@ public class ToDoItemFragment extends ListFragment implements NotifierListener {
     public void notifyChanges(){
         ((ArrayAdapter<ToDoItem>)getListAdapter()).notifyDataSetChanged();
     }
-    public void uploadListAdapter(){
+    public void updateListAdapter(){
         ToDoAdapter adapter = new ToDoAdapter(mSynchronizedToDoItemArray.getToDoItems());
         setListAdapter(adapter);
     }

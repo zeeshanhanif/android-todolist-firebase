@@ -19,6 +19,7 @@ import com.firebase.client.Firebase;
 
 import java.util.GregorianCalendar;
 
+import firebase.generic.todolist.*;
 import firebasetodolist.todolist.firebase.com.firebase.FirebaseHandler;
 
 
@@ -82,7 +83,8 @@ public class LoginActivity extends ActionBarActivity {
                     Toast.makeText(getActivity(), emailId.getText(), Toast.LENGTH_SHORT).show();
                     //createDialog(inflater);
 
-                    Intent intent = new Intent(getActivity(),ToDoListActivity.class);
+                    //Intent intent = new Intent(getActivity(),ToDoListActivity.class);
+                    Intent intent = new Intent(getActivity(), firebase.generic.todolist.ToDoListActivity.class);
                     startActivity(intent);
 
                 }

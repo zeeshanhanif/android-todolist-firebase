@@ -10,7 +10,7 @@ import com.firebase.client.Firebase;
 public class FirebaseHandler {
 
     private static FirebaseHandler ourInstance;
-    private Firebase myFirebaseRef;
+    private Firebase firebaseRef;
 
     public static FirebaseHandler getInstance() {
         if(ourInstance == null){
@@ -20,10 +20,14 @@ public class FirebaseHandler {
     }
 
     private FirebaseHandler() {
-        myFirebaseRef = new Firebase("https://todolist-dev.firebaseio.com/");
+        firebaseRef = new Firebase("https://todolist-dev.firebaseio.com/");
     }
 
-    public Firebase getMyFirebaseRef(){
-        return myFirebaseRef;
+    public Firebase getRootFirebaseRef(){
+        return firebaseRef;
+    }
+
+    public Firebase getFirebaseRef(String child){
+        return firebaseRef.child(child);
     }
 }

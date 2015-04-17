@@ -7,9 +7,12 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.firebase.client.Firebase;
+
 import firebasetodolist.todolist.firebase.com.R;
 
-import firebase.generic.todolist.dummy.DummyContent;
+
+import firebasetodolist.todolist.firebase.com.firebase.FirebaseHandler;
 
 
 public class ToDoItemFragment extends ListFragment {
@@ -17,7 +20,8 @@ public class ToDoItemFragment extends ListFragment {
 
 
     private OnFragmentInteractionListener mListener;
-
+    private ToDoItemListAdapter mToDoItemListAdapter;
+    private Firebase todoItemFirebaseRef;
 
     public ToDoItemFragment() {
     }
@@ -26,8 +30,9 @@ public class ToDoItemFragment extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setListAdapter(new ArrayAdapter<ToDoItem>(getActivity(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, DummyContent.ITEMS));
+        todoItemFirebaseRef = FirebaseHandler.getInstance().getFirebaseRef("todos");
+        mToDoItemListAdapter = new ToDoItemListAdapter(todoItemFirebaseRef,R.layout.fragment_to_do_list2,getActivity());
+        setListAdapter(mToDoItemListAdapter);
     }
 
 
@@ -54,7 +59,7 @@ public class ToDoItemFragment extends ListFragment {
         super.onListItemClick(l, v, position, id);
 
         if (null != mListener) {
-            mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
+            //mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
         }
     }
 
@@ -71,6 +76,11 @@ public class ToDoItemFragment extends ListFragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         public void onFragmentInteraction(String id);
+    }
+
+
+    protected void addItem(ToDoItem toDoItem){
+        mToDoItemListAdapter.addToDo(toDoItem);
     }
 
 }

@@ -25,7 +25,7 @@ public class SynchronizedArray<T> {
 
     public SynchronizedArray(NotifierListener notifierListener,String arrayKey){
         this.items = new ArrayList<T>();
-        firebaseRef = FirebaseHandler.getInstance().getMyFirebaseRef().child(arrayKey);
+        firebaseRef = FirebaseHandler.getInstance().getRootFirebaseRef().child(arrayKey);
         this.notifierListener = notifierListener;
         setupEvent();
     }

@@ -8,12 +8,13 @@ import android.widget.TextView;
 import com.firebase.client.Query;
 
 import firebase.repo.com.FirebaseListAdapter;
+import firebase.repo.com.FirebaseListAdapter2;
 import firebasetodolist.todolist.firebase.com.R;
 
 /**
  * Created by zeeshan on 4/17/2015.
  */
-public class ToDoItemListAdapter extends FirebaseListAdapter<ToDoItem> {
+public class ToDoItemListAdapter extends FirebaseListAdapter2<ToDoItem> {
 
     public ToDoItemListAdapter(Query ref, int layout, Activity activity){
         super(ref,ToDoItem.class,layout,activity);
@@ -31,4 +32,9 @@ public class ToDoItemListAdapter extends FirebaseListAdapter<ToDoItem> {
         dateTextView.setText(toDoItem.getTimestamp().toString());
         doneCheckBox.setChecked(toDoItem.isCompleted());
     }
+
+    public void addToDo(ToDoItem toDoItem){
+        getFirebaseRef().push().setValue(toDoItem);
+    }
+
 }

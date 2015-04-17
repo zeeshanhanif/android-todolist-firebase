@@ -22,6 +22,10 @@
             android:name=".ToDoListActivity"
             android:label="@string/title_activity_to_do_list" >
         </activity>
+        <activity
+            android:name="firebase.generic.todolist.ToDoListActivity"
+            android:label="@string/title_activity_to_do_list" >
+        </activity>
     </application>
 
 </manifest>
